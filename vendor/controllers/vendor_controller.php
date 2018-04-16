@@ -1,7 +1,7 @@
 <?php
 
 class vendor_controller {
-	protected $controller = "home";
+	protected $controller = "login";
 	protected $action = "index";
 
 	public function __construct() {
