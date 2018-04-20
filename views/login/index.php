@@ -1,7 +1,7 @@
 <?php require_once("views/layouts/head.php"); ?>
 
 <section class="o-grid">
-  <form action="/?route=login/check" method="POST">
+  <form action="<?php echo vendor_url_util::makeURL(["controller" => "login", "action" => "check"]) ?>" method="POST">
     <div>
       Username
       <input type="text" name="username" />

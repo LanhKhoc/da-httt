@@ -15,9 +15,18 @@ class vendor_model {
 	}
 
 	public function get($fields = "*", $options = null) {
-		$conditions = isset($options["conditions"]) ? 'where ' . $options['conditions'] : '';
+		// $conditions = isset($options["conditions"]) ? 'where ' . $options['conditions'] : '';
+		$conditions = '';
+		if(isset($options['conditions'])) {
+			$conditions = 'WHERE ' . array_keys($options['conditions'])[0] . "='" . array_shift($options['conditions']) . "'";
+			foreach($options['conditions'] as $key => $value) {
+				if(strpos($key, '|') === 0) $conditions .= ' OR ' . mysqli_real_escape_string($this->conn, substr($key, 1)) . "='" . mysqli_real_escape_string($this->conn, $value) . "'";
+				else if(strpos($key, '&') === 0) $conditions .= ' AND ' . mysqli_real_escape_string($this->conn, substr($key, 1)) . "='" . mysqli_real_escape_string($this->conn, $value) . "'";
+				else $conditions .= ' AND ' . mysqli_real_escape_string($this->conn, $key) . "='" . mysqli_real_escape_string($this->conn, $value) . "'";
+			}
+		}
+
 		$sql = "SELECT $fields FROM `$this->table` $conditions";
-		echo $sql;
 		return $this->conn->query($sql);
 	}
 

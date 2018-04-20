@@ -24,7 +24,7 @@ class login_controller extends vendor_controller {
     if($model->check($username, $password)) {
       echo "Login Success";
     } else {
-      header("Location: /?route=login/index");
+      // header("Location: /?route=login/index");
     }
   }
 }

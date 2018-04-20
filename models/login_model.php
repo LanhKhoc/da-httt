@@ -9,19 +9,21 @@ class login_model extends vendor_model {
 
   public function check($username, $password) {
     $row = $this->get("salt", [
-      "conditions" => "user_name = '" . $username . "'"
+      "conditions" => [
+        'user_name' => $username
+      ]
     ])->fetch_assoc();
 
-    $passSalt = md5($password + $row["salt"]);
+    $passSalt = md5($password + $row['salt']);
 
-    // $result = $this->get("*", [
-    //   "conditions" => "user_name = '{$username}' AND password = '{$passSalt}'"
+    // $result = $this->get('*', [
+    //   'conditions' => 'user_name = '{$username}' AND password = '{$passSalt}''
     // ])->num_rows;
 
-    $result = $this->get("*", [
-      "conditions" => [
-        "user_name" => "admin",
-        "password" => $passSalt
+    $result = $this->get('*', [
+      'conditions' => [
+        'user_name' => 'admin',
+        '&password' => $passSalt
       ]
     ])->num_rows;
     return $result > 0;
