@@ -20,7 +20,7 @@ class vendor_model {
 		$conditions = '';
 
 		if(isset($options['conditions'])) {
-			$conditions = "WHERE `{$this->table}`." . mysqli_real_escape_string( $this->conn, array_keys($options['conditions'])[0]) . "='" . $this->conn->real_escape_string(array_shift($options['conditions'])) . "'";
+			$conditions = "WHERE `{$this->table}`." . mysqli_real_escape_string($this->conn, array_keys($options['conditions'])[0]) . "='" . $this->conn->real_escape_string(array_shift($options['conditions'])) . "'";
 			foreach($options['conditions'] as $key => $value) {
 				if(strpos($key, '|') === 0) {
 					$conditions .= " OR `{$this->table}`." . $this->conn->real_escape_string(substr($key, 1)) . "='" . $this->conn->real_escape_string($value) . "'";
