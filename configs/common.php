@@ -1,3 +1,6 @@
 <?php
 
-define(ENCRYPT_COUNT, 10);
+// NOTE: Change this!!!!
+define('DEFAULT_CONTROLLER', 'phongban');
+define('APPLICATION', "APP");
+define('ENCRYPT_COUNT', 10);
