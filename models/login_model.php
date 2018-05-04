@@ -1,31 +1,20 @@
-<?php
+<?php if (!defined('APPLICATION')) die ('Bad requested!');
 
 class login_model extends vendor_model {
-  protected $table = 'user';
+  protected $table = "ADMIN";
 
-  public function __contruct() {
-    parent::__contruct();
+  public function __construct() {
+    parent::__construct();
   }
 
-  public function check($username, $password) {
-    $row = $this->get("salt", [
+  public function checkLogin($username, $password) {
+    $result = $this->get("*", [
       "conditions" => [
-        'user_name' => $username
-      ]
-    ])->fetch_assoc();
-
-    $passSalt = md5($password + $row['salt']);
-
-    // $result = $this->get('*', [
-    //   'conditions' => 'user_name = '{$username}' AND password = '{$passSalt}''
-    // ])->num_rows;
-
-    $result = $this->get('*', [
-      'conditions' => [
-        'user_name' => 'admin',
-        '&password' => $passSalt
+        "username" => $username,
+        "password" => md5($password)
       ]
     ])->num_rows;
+
     return $result > 0;
   }
 }
