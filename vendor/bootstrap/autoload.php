@@ -7,7 +7,7 @@ function __autoload($className) {
   $filename = "";
 
 	if($firstCL == "vendor") $filename = "vendor/";
-	$filename .= $lastCL . "s/" . $className . ".php";
+  $filename .= $lastCL . "s/" . $className . ".php";
 
 	if (is_file($filename)) {
     include_once($filename);

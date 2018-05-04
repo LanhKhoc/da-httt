@@ -1,4 +1,4 @@
-<?php
+<?php if (!defined('APPLICATION')) die ('Bad requested!');
 
 class vendor_controller {
 	protected $controller = "login";
@@ -22,5 +22,9 @@ class vendor_controller {
 		if(empty($options['action']))	$options['action'] = $this->action;
 
 		include_once "views/" . $options['controller'] . "/" . $options['action'] . ".php";
+	}
+
+	public function setProperty($name, $value) {
+		$this->$name = $value;
 	}
 }
