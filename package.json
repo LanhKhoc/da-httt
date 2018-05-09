@@ -1,0 +1,25 @@
+{
+  "name": "Website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:sass": "node-sass -r --output-style compressed assets/scss/ -o assets/scss/",
+    "watch:sass": "npm run build:sass && npm run build:sass -- -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LanhKhoc/da-httt.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LanhKhoc/da-httt/issues"
+  },
+  "homepage": "https://github.com/LanhKhoc/da-httt#readme",
+  "devDependencies": {
+    "node-sass": "^4.9.0"
+  }
+}

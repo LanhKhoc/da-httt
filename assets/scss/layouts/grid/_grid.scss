@@ -1,0 +1,32 @@
+@include make-grid-columns;
+@include make-grid(xxs);
+@include responsive-up(xs)    {@include make-grid(xs);}
+@include responsive-up(sm)    {@include make-grid(sm);}
+@include responsive-up(md)    {@include make-grid(md);}
+@include responsive-up(lg)    {@include make-grid(lg);}
+@include responsive-up(xl)    {@include make-grid(xl);}
+
+.o-grid {
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: ceil($g-gutter / 2);
+  padding-right: floor($g-gutter / 2);
+  position: relative;
+
+  @include clearfix();
+
+  @include responsive-up(sm)    {width: $container-sm;}
+  @include responsive-up(md)    {width: $container-md;}
+  @include responsive-up(lg)    {width: $container-lg;}
+  @include responsive-up(xl)    {width: $container-xl;}
+  @include responsive-up(xxl)   {width: $container-xxl;}
+
+	&__row {
+    margin-left: ceil(-$g-gutter / 2);
+		margin-right: floor(-$g-gutter / 2);
+    position: relative;
+
+		@include clearfix();
+	}
+}
+

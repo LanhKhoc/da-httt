@@ -1,0 +1,64 @@
+$color-white: #fff;
+$color-black: #0b0b0b;
+$color-grey: #797e83;
+$color-orange:			#EA6000;
+
+$color-fountain-blue: #52bab3;
+$color-emerald: #5ece7f;
+$color-sunglo: #e67478;
+$color-coral: #ff784f;
+$color-purple-majesty: #9279c3;
+$color-scooter: #39add1;
+
+
+
+
+
+// Colors UI Map
+$ui-colors: (
+	default: #ffffff,
+	primary: #337ab7,
+	success: #5cb85c,
+	warning: #f0ad4e,
+	info: #5bc0de,
+	danger: #d9534f
+);
+
+
+
+
+
+/**
+ * Color Paletters Modiers
+ *
+ * How to use: map-get(map-get($paletter, grey), xx-light);
+ * Example: palette(grey, light);
+ */
+$paletters: (
+	grey: (
+		x-light: lighten($color-grey, 8%),
+		light: lighten($color-grey, 4%),
+		base: $color-grey,
+		dark: darken($color-grey, 4%),
+		x-dark: darken($color-grey, 8%),
+	),
+	black: (
+		light: lighten($color-black, 4%),
+		base: $color-black,
+		dark: darken($color-black, 4%),
+	),
+	white: (
+		light: lighten($color-white, 4%),
+		base: $color-white,
+		dark: darken($color-white, 4%),
+		x-dark: darken($color-white, 8%),
+		xx-dark: darken($color-white, 16%),
+	),
+	orange: (
+		base: $color-orange
+	)
+);
+
+// Main color
+$color-primary: $color-grey;
+$color-secondary: $color-orange;

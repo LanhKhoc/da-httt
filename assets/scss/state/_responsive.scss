@@ -1,0 +1,33 @@
+// NOTE: $display: "block inline inline-block" 
+@each $d in $display {
+	@each $brkp, $index in $screen-brkp {
+		.is-hidden-#{$brkp}-down {
+			@include responsive-down($brkp) {
+				display: none;
+			}
+		}
+
+		.is-hidden-#{$brkp}-up {
+			@include responsive-up($brkp) {
+				display: none;
+			}
+		}
+	}
+}
+
+@each $d in $display {
+	@each $brkp, $index in $screen-brkp {
+		.is-visible-#{$d}-#{$brkp}-down {
+			@include responsive-down($brkp) {
+				display: #{$d};
+			}
+		}
+
+		.is-visible-#{$d}-#{$brkp}-up {
+			@include responsive-up($brkp) {
+				display: #{$d};
+			}
+		}
+}
+}
+

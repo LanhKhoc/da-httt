@@ -1,0 +1,26 @@
+/**
+ * Hightlight.
+ */
+.u-hightlight-white {background: palette(white) !important;}
+.u-hightlight-dark-white {background: palette(white, dark);}
+.u-hightlight-xx-dark-white {background: palette(white, xx-dark);}
+.u-hightlight-orange {background: palette(orange) !important;}
+.u-hightlight-grey {background: palette(grey);}
+.u-hightlight-dark-grey {background: palette(grey, dark) !important;}
+
+.u-transparent {
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+}
+
+
+
+
+/**
+ * Color.
+ */
+.u-color-primary {color: $color-primary !important;}
+.u-color-white {color: white !important;}
+.u-color-danger {color: map-get($ui-colors, danger)}
+.u-color-success {color: map-get($ui-colors, success)}
