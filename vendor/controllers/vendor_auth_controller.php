@@ -10,29 +10,6 @@ class vendor_auth_controller extends vendor_controller {
   }
 
   public function checkAuth() {
-    $loginModel = new login_model();
-
-    $token = $_COOKIE['user_token'];
-    $username = $_COOKIE['user_info'];
-    if(!$username || !$token) return false;
-
-    $result = $loginModel->get('username, password', [
-      'conditions' => [
-        'username' => $username
-      ]
-    ])->fetch_assoc();
-
-    return $token == md5($result['username'] . $result['password']);
-
-    // if($token == md5($result['username'] . $result['password'])) {
-    //   return [
-    //     'logged' => true,
-    //     'info' => [
-    //       'role' => '',
-    //     ]
-    //   ];
-    // } else {
-    //   return [ 'logged' => false ];
-    // }
+    return isset($)
   }
 }

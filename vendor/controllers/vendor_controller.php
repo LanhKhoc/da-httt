@@ -1,7 +1,7 @@
 <?php if (!defined('APPLICATION')) die ('Bad requested!');
 
 class vendor_controller {
-	protected $controller = "login";
+	protected $controller = DEFAULT_CONTROLLER;
 	protected $action = "index";
 
 	public function __construct() {
