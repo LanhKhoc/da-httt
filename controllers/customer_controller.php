@@ -9,4 +9,12 @@ class customer_controller extends vendor_controller {
     $this->setProperty('data', $data);
     $this->view();
   }
+
+  public function show() {
+    $id = isset($_GET['id']) ? $_GET['id'] : null;
+    if ($id == null) { die(); }
+
+    $service = new customer_service();
+    $data = $service->getInfoCustomer($id);
+  }
 }

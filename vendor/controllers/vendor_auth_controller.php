@@ -12,8 +12,8 @@ class vendor_auth_controller extends vendor_controller {
   public function checkAuth() {
     if (isset($_SESSION['user_info'])) return true;
 
-    $token = $_COOKIE["user_token"];
-    $user_info = json_decode($_COOKIE['user_info']);
+    $token = isset($_COOKIE["user_token"]) ? $_COOKIE["user_token"] : null;
+    $user_info = isset($_COOKIE['user_info']) ? json_decode($_COOKIE['user_info']) : null;
     if(!$user_info || !$token) return false;
 
     $model = new user_model();

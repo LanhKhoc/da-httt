@@ -23,4 +23,22 @@ class customer_service {
 
     return $data;
   }
+
+  public function getInfoCustomer($id) {
+    $model = new customer_model();
+    $data = [];
+
+    $result = $model->get('*', [
+      'conditions' => [
+        'id_client' => $id
+      ]
+    ]);
+
+    while ($row = $result->fetch_assoc()) {
+      $data[] = [
+        // 's'
+      ];
+    }
+
+  }
 }

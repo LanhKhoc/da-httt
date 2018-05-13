@@ -48,7 +48,7 @@
                   <td><?= $value['id'] ?></td>
                   <td><?= $value['fullname'] ?></td>
                   <td><?php echo $value['state'] == 1 ? 'Còn hạn' : 'Hết hạn'; ?></td>
-                  <td align="center"><a href="<?= vendor_url_util::makeURL(['action' => 'show']) ?>" class="btn">Xem</a></td>
+                  <td align="center"><a href="<?= vendor_url_util::makeURL(['action' => 'show', 'params' => ['id' => $value['id']]]) ?>" class="btn btn-secondary">Xem</a></td>
                 </tr>
               <?php } ?>
             </tbody>
