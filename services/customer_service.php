@@ -32,13 +32,18 @@ class customer_service {
       'conditions' => [
         'id_client' => $id
       ]
-    ]);
+    ])->fetch_assoc();
 
-    while ($row = $result->fetch_assoc()) {
-      $data[] = [
-        // 's'
-      ];
-    }
+    $data = [
+      'fullname' => $result['fullname'],
+      'gender' => $result['gender'] == 1 ? 'Nam' : 'Nữ',
+      'date_of_birth' => $result['date_of_birth'],
+      'email' => $result['email'],
+      'phone' => $result['phone'],
+      'address' => $result['address'],
+      'state' => $result['active'] == 1 ? 'Còn hạn' : 'Hết hạn'
+    ];
 
+    return $data;
   }
 }

@@ -2,7 +2,7 @@
 
 class vendor_validator_util {
   private function requiredField($value) {
-    if(!strlen($value)) { return ['status' => false, 'message' => "This field can not blank!"]; }
+    if(!strlen(trim($value))) { return ['status' => false, 'message' => "This field can not blank!"]; }
     return ['status' => true];
   }
 
