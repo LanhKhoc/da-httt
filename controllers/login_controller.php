@@ -6,10 +6,27 @@ class login_controller extends vendor_controller {
   }
 
   public function index() {
-    $error = isset($_SESSION['login_error']) ? $_SESSION['login_error'] : '';
-    if (isset($_SESSION['login_error'])) { unset($_SESSION['login_error']); }
+    if (vendor_auth_controller::checkAuth()) {
+      if (empty($_SESSION['user_info'])) { $id = json_decode($_COOKIE['user_info'])->id; }
+      else { $id = $_SESSION['user_info']['id']; }
+      header('Location: ' . vendor_url_util::makeURL(['controller' => 'user', 'action' => 'edit', 'params' => ['id' => $id]]));
+      die();
+    }
+
+    $error = [
+      'username' => isset($_SESSION['error']['username']) ? $_SESSION['error']['username'] : '',
+      'password' => isset($_SESSION['error']['password']) ? $_SESSION['error']['password'] : ''
+    ];
+
+    $remember = [
+      'username' => isset($_SESSION['remember']['username']) ? $_SESSION['remember']['username'] : ''
+    ];
+
+    unset($_SESSION['error']);
+    unset($_SESSION['remember']);
 
     $this->setProperty('error', $error);
+    $this->setProperty('remember', $remember);
     $this->view();
   }
 
@@ -18,35 +35,26 @@ class login_controller extends vendor_controller {
 
     $username = isset($_POST['username']) ? $_POST['username'] : '';
     $password = isset($_POST['password']) ? $_POST['password'] : '';
-    $model = new login_model();
+    $remember = isset($_POST['remember']) ? true : false;
+    $service = new login_service();
 
-    $result = $model->checkLogin($username, $password);
+    $result = $service->checkLogin($username, $password, $remember);
 
-    if($result['logged']) {
-      $_SESSION['user_info'] = [
-        'full_name' => $result['full_name']
-      ];
-      header('Location: ' . vendor_url_util::makeURL(['controller' => 'user']));
+    if($result['status'] === true) {
+      $id = $result['user_info']['id'];
+      header('Location: ' . vendor_url_util::makeURL(['controller' => 'user', 'action' => 'edit', 'params' => ['id' => $id]]));
     } else {
-      $_SESSION['login_error'] = 'Username/Password incorrect';
       header('Location: ' . vendor_url_util::makeURL(['controller' => 'login']));
     }
   }
 
-  // public function store() {
-  //   $model = new user_model();
-  //   $model->store([
-  //     'user_name' => ?
-  //   ]);
-  // }
-  
-  // public function destroy() {
-  //   $model->destroy(['id' => 1]);
-  // }
+  public function logout() {
+    if (isset($_SESSION['user_info'])) { unset($_SESSION['user_info']); }
+    else {
+      setcookie('user_token', '', 0, '/');
+      setcookie('user_info', '', 0, '/');
+    }
 
-  // public function update() {
-  //   $model->update($id, [
-  //     'password' => $password
-  //   ])
-  // }
+    header('Location: ' . vendor_url_util::makeURL(['login']));
+  }
 }

@@ -1,0 +1,8 @@
+.c-header {
+  background-color: palette(primary);
+  padding: 0 15px;
+
+  &__bar { font-size: 30px; }
+  &__text { line-height: 30px; }
+  &__logout { font-size: 30px; }
+}

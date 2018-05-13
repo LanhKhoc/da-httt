@@ -2,5 +2,5 @@
 
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASSWORD', '');
-define('DB_NAME', 'baidoxe');
+define('DB_PASSWORD', '123456');
+define('DB_NAME', 'dut__da-httt');

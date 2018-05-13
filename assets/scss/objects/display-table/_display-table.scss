@@ -1,0 +1,19 @@
+.o-d-table {
+	$block: &;
+
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+
+	&__cell {
+		display: table-cell;
+
+		&--middle {
+			vertical-align: middle;
+    }
+
+    &--top {
+      vertical-align: top;
+    }
+	}
+}

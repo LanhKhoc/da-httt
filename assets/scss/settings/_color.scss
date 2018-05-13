@@ -56,6 +56,12 @@ $paletters: (
 	),
 	orange: (
 		base: $color-orange
+	),
+	primary: (
+		base: map-get($map: $ui-colors, $key: primary)
+	),
+	success: (
+		base: map-get($map: $ui-colors, $key: success)
 	)
 );
 

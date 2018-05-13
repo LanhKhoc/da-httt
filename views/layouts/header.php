@@ -1,29 +1,20 @@
-<section class="c-header">
-  <div class="container clearfix">
-    <div class="float-left">
-      <ul class="o-navbar u-clearfix">
-        <li class="o-navbar__logo">
-        <a href="<?php echo vendor_url_util::makeURL(['controller' => 'phongban']) ?>" class="h2 text-info">
-          <i class="fab fa-angellist"></i>
-        </a>
-        </li>
-        <li class="o-navbar__item <?php if(isset($this->data['phongban'])) echo 'o-navbar__item--active'; ?>">
-          <a href="<?php echo vendor_url_util::makeURL(['controller' => 'phongban']) ?>">Quản lý phòng ban</a>
-        </li>
-        <li class="o-navbar__item <?php if(isset($this->data['nhanvien'])) echo 'o-navbar__item--active'; ?>">
-          <a href="<?php echo vendor_url_util::makeURL(['controller' => 'nhanvien']) ?>">Quản lý nhân viên</a>
-        </li>
-      </ul>
-    </div>
+<div class="o-d-table__cell o-d-table__cell--top u-w-content">
+  <div class="c-header">
+    <div class="row">
+      <div class="col-4 c-header__bar">
+        <a href="" class="u-color-white js-toggle-sidebar"><i class="fas fa-bars"></i></a>
+      </div>
 
-    <div class="float-right">
-      <?php if($this->data['user_logged'] === true) { ?>
-        <span class="text-warning mr-3">Hello, <strong><?php echo $_COOKIE["user_info"] ?></strong></span>
-        <a href="<?php echo vendor_url_util::makeURL(['controller' => 'logout']) ?>" class="btn btn-danger">Logout</a>
-      <?php } else { ?>
-        <a href="<?php echo vendor_url_util::makeURL(['controller' => 'login']) ?>" class="btn btn-success">Login</a>
-        <!-- <a href="<?php echo vendor_url_util::makeURL(['controller' => 'register']) ?>" class="btn btn-primary">Register</a> -->
-      <?php } ?>
+      <div class="col-4 text-center c-header__text u-color-white">
+        <div class="o-d-table u-h-100">
+          <div class="o-d-table__cell o-d-table__cell--middle">
+            <h4>Hệ thống quản lý bãi đậu xe</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4 text-right c-header__logout">
+        <a href="<?= vendor_url_util::makeURL(['controller' => 'login', 'action' => 'logout']) ?>" class="u-color-white"><i class="fas fa-sign-out-alt"></i></a>
+      </div>
     </div>
   </div>
-</section>

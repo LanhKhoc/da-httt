@@ -1,133 +1,54 @@
-// let img = new Image();
-// img.onload = function() {
-  // $('.js-loader').fadeOut(300);
-  // $('#root').fadeIn(300);
-// };
-// img.src = '../assets/img/bg.jpg';
+// NOTE: Change this to match server
+const Config = {
+  host: 'localhost',
+  port: '9999',
+  rootREL: ''
+};
 
-$(window).on('load', () => {
-  // $('.js-loader').fadeOut(300);
-  // $('#root').fadeIn(300);
-})
+// NOTE: Delegate prototype
+const Ajax = {
+  create(Config) {
+    return Object.assign(Object.create(Config), this);
+  },
+
+  serilizeObject(arr) {
+    return arr.reduce((acc, cur) => {
+      return {
+        ...acc,
+        [cur['name']]: cur['value']
+      }
+    }, {});
+  },
+
+  getRequest({data, url}) {
+    return new Promise((resolve, reject) => {
+      $.ajax({
+        url: url,
+        method: 'GET',
+        data: data,
+        success: data => resolve(data),
+        error: err => reject(err)
+      })
+    })
+  }
+};
+
+const Sidebar = function() {
+  const _$sidebar = $('.js-sidebar');
+
+  const handleClickToggle = function(e) {
+    e.preventDefault();
+
+    _$sidebar.animate({width: 'toggle'}, 200);
+  }
+
+  return {
+    handleClickToggle,
+  }
+}
 
 $(() => {
-  const CONFIG = {
-    host: 'localhost',
-    port: '9999',
-    rootREL: ''
-  }
+  const _$toggleBtn = $('.js-toggle-sidebar');
 
-  class Ajax {
-    static serializeObject(arr) {
-      return arr.reduce((acc, cur) => {
-        return {
-          ...acc,
-          [cur['name']]: cur['value']
-        }
-      }, {});
-    }
-
-    static getRequest({data, url}) {
-      return new Promise((resolve, reject) => {
-        $.ajax({
-          url: url,
-          method: 'GET',
-          data: data,
-          success: data => resolve(data),
-          error: err => reject(err)
-        })
-      })
-    }
-  }
-
-  class PhongBan {
-    handleSearch(e) {
-      e.preventDefault();
-
-      Ajax.getRequest({
-        url: `${CONFIG.rootREL}/?route=phongban/search`,
-        data: Ajax.serializeObject($(this).serializeArray())
-      })
-        .then((res) => {
-          $('.js-phongban-table tbody').html('');
-          const dataRes = JSON.parse(res);
-
-          dataRes.data.forEach((item) => {
-            let $ele = $('<tr></tr>');
-            $ele.append(`<td>${item.idpb}</td>`);
-            $ele.append(`<td>${item.mota}</td>`);
-            $ele.append(`<td>${item.thoigian}</td>`);
-
-            let $action = $('<td align="center"></td>');
-            $action.append(`
-              <a href="${CONFIG.rootREL}/?route=nhanvien&idpb=${item.idpb}" class="ml-3">
-                <i class="fas fa-eye"></i>
-              </a>
-            `);
-
-            if (dataRes.user_logged === true) {
-              $action.append(`
-                <a href="${CONFIG.rootREL}/?route=phongban/edit&idpb=${item.idpb}" class="ml-3">
-                  <i class="fas fa-edit"></i>
-                </a>
-                <a href="${CONFIG.rootREL}/?route=phongban/destroy&idpb=${item.idpb}" class="ml-3 js-destroy">
-                  <i class="fas fa-trash-alt"></i>
-                </a>
-              `);
-            }
-
-            $('.js-phongban-table tbody').append($ele.append($action));
-          })
-        })
-        .catch(error => console.log(error));
-    }
-  }
-
-  class NhanVien {
-    handleSearch(e) {
-      e.preventDefault();
-
-      Ajax.getRequest({
-        url: `${CONFIG.rootREL}/?route=nhanvien/search`,
-        data: Ajax.serializeObject($(this).serializeArray())
-      })
-        .then((res) => {
-          $('.js-nhanvien-table tbody').html('');
-          const dataRes = JSON.parse(res);
-
-          dataRes.data.forEach((item) => {
-            let $ele = $('<tr></tr>');
-            $ele.append(`<td>${item.idnv}</td>`);
-            $ele.append(`<td>${item.hoten}</td>`);
-            $ele.append(`<td>${item.mota}</td>`);
-            $ele.append(`<td>${item.diachi}</td>`);
-
-            let $action = $('<td align="center"></td>');
-            if (dataRes.user_logged === true) {
-              $action.append(`
-                <a href="${CONFIG.rootREL}/?route=phongban/edit&idpb=${item.idpb}" class="ml-3">
-                  <i class="fas fa-edit"></i>
-                </a>
-                <a href="${CONFIG.rootREL}/?route=phongban/destroy&idpb=${item.idpb}" class="ml-3 js-destroy">
-                  <i class="fas fa-trash-alt"></i>
-                </a>
-              `);
-            }
-
-            $('.js-nhanvien-table tbody').append($ele.append($action));
-          })
-        })
-        .catch(error => console.log(error));
-    }
-  }
-
-  const $searchPB = $('.js-phongban-search');
-  const $searchNV = $('.js-nhanvien-search');
-  const $deleteAction = $('.js-destroy');
-  const pb = new PhongBan();
-  const nv = new NhanVien();
-
-  $searchPB.on('submit', pb.handleSearch);
-  $searchNV.on('submit', nv.handleSearch);
-  $deleteAction.on('click', (e) => { if (confirm('Are you sure?') === false) e.preventDefault(); })
-});
+  _$toggleBtn.on('click', Sidebar().handleClickToggle);
+})

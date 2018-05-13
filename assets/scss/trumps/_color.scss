@@ -22,5 +22,6 @@
  */
 .u-color-primary {color: $color-primary !important;}
 .u-color-white {color: white !important;}
+.u-color-black { color: palette(black) !important; }
 .u-color-danger {color: map-get($ui-colors, danger)}
 .u-color-success {color: map-get($ui-colors, success)}

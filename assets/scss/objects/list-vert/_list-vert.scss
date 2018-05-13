@@ -1,0 +1,13 @@
+.o-list-vert {
+  $block: &;
+
+  &__item {
+    border-bottom: 1px solid palette(black, xx-light);
+  }
+    &__link {
+      display: block;
+      line-height: 40px;
+      padding: 0 10px;
+      text-decoration: none !important;
+    }
+}

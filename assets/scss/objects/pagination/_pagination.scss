@@ -1,0 +1,22 @@
+.o-pagination {
+  @include clearfix();
+
+  display: inline-block;
+
+  &__item {
+    float: left;
+    border: 1px solid black;
+  }
+
+  &__link {
+    display: block;
+    padding: 3px 7px;
+    text-decoration: none !important;
+  }
+
+  &__current {
+    display: block;
+    color: palette(success);
+    padding: 3px 7px;
+  }
+}

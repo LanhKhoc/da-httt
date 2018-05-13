@@ -1,0 +1,10 @@
+.o-replace {
+  &__input {
+    position: absolute;
+    top: -9999px;
+  }
+
+  &__object {
+    cursor: pointer;
+  }
+}

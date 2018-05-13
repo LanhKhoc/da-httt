@@ -19,7 +19,7 @@
   @include responsive-up(md)    {width: $container-md;}
   @include responsive-up(lg)    {width: $container-lg;}
   @include responsive-up(xl)    {width: $container-xl;}
-  @include responsive-up(xxl)   {width: $container-xxl;}
+  // @include responsive-up(xxl)   {width: $container-xxl;}
 
 	&__row {
     margin-left: ceil(-$g-gutter / 2);
